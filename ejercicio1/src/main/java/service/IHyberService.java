@@ -18,15 +18,21 @@ public interface IHyberService {
     List<Emp> getAllEmp(String hibernateConfigResource);
 
     /**
-     * Guarda un empleado
+     * Guarda un empleado en una base de datos
      */
-    void saveEmpInMariaDB();
+    void saveEmp(String hibernateConfigResource, Emp emp);
+
+    /**
+     * Guarda un departamento en una base de datos
+     * @param hibernateConfigResource
+     */
+    void saveDept(String hibernateConfigResource, Dept dept);
 
     /**
      * Obtiene todos los departamentos de la base de datos
      * @return
      */
-    List<Dept> getAllDept();
+    List<Dept> getAllDept(String hibernateConfigResource);
 
 
 

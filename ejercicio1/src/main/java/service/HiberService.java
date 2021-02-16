@@ -17,25 +17,6 @@ public class HiberService implements IHyberService {
 
 
 
-    /*public List<PlanetaEntity> getAllPlanets() {
-        List<PlanetaEntity> planetaEntityList;
-        Session session;
-        Transaction transaction;
-
-
-        session = sessionFactory.openSession();
-        transaction = session.beginTransaction();
-        Query query = session.createQuery("from PlanetaEntity p"); //Cuidado, importar de org.hibernate.query
-        planetaEntityList = query.list();
-        transaction.commit();
-
-        session.close();
-        sessionFactory.close();
-
-        return planetaEntityList;
-    }*/
-
-
     @Override
     public List<Emp> getAllEmp(String hibernateConfigResource) {
         SessionFactory sessionFactory;
@@ -57,24 +38,57 @@ public class HiberService implements IHyberService {
     }
 
     @Override
-    public void saveEmpInMariaDB() {
+    public void saveEmp(String hibernateConfigResource, Emp emp) {
         SessionFactory sessionFactory;
         Session session;
         Transaction transaction;
 
-        sessionFactory = new Configuration().configure("src/main/resources/hibernateOracle.cfg.xml").buildSessionFactory();
+        sessionFactory = new Configuration().configure(hibernateConfigResource).buildSessionFactory();
 
         session = sessionFactory.getCurrentSession();
         transaction = session.beginTransaction();
 
-        /*session.save(planeta);*/
+        session.save(emp);
 
         transaction.commit();
         session.close();
     }
 
     @Override
-    public List<Dept> getAllDept() {
-        return null;
+    public void saveDept(String hibernateConfigResource, Dept dept) {
+        SessionFactory sessionFactory;
+        Session session;
+        Transaction transaction;
+
+        sessionFactory = new Configuration().configure(hibernateConfigResource).buildSessionFactory();
+
+        session = sessionFactory.getCurrentSession();
+        transaction = session.beginTransaction();
+
+        session.save(dept);
+
+        transaction.commit();
+        session.close();
+
+    }
+
+    @Override
+    public List<Dept> getAllDept(String hibernateConfigResource) {
+        SessionFactory sessionFactory;
+        Session session;
+        Transaction transaction;
+        List<Dept> deptList;
+
+        sessionFactory = new Configuration().configure(hibernateConfigResource).buildSessionFactory();
+        session = sessionFactory.getCurrentSession();
+        transaction = session.beginTransaction();
+        Query query = session.createQuery("from Dept d");
+        deptList = query.list();
+        transaction.commit();
+
+        session.close();
+        sessionFactory.close();
+
+        return deptList;
     }
 }
