@@ -16,10 +16,8 @@ public class Launcher {
         System.out.println("--COPIANDO DEPARTAMENTOS DESDE ORACLEXE A MARIADB--");
         List<Dept> deptListOracle = hiberService.getAllDept(HiberService.HIBERNATE_CONFIG_ORACLE);
         deptListOracle.forEach(dept -> {
-            Dept departamento = dept;
-
-            System.out.println("Procesando el departamento: " + departamento.getDname());
-            hiberService.saveDept(HiberService.HIBERNATE_CONFIG_MARIADB, departamento);
+            System.out.println("Procesando el departamento: " + dept.getDname());
+            hiberService.saveDept(HiberService.HIBERNATE_CONFIG_MARIADB, dept);
         });
 
 
