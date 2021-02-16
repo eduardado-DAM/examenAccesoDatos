@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="model.Planta" table = "Planta">
+           <!-- Primary Key autoincrement mariadb-->       
+      <id name = "id" column = "ID" type = "integer" >
+         <generator class="native"/>
+      </id>
+      
+      <property name = "genero" column = "Genero" type = "string"/>
+      <property name = "especie" column = "Especie" type = "string"/>
+      <property name = "nombreComun" column = "NombreComun" type = "string"/>
+      <property name = "urlPhoto" column = "URLPhoto" type = "string"/>
+      <property name = "urlWikipedia" column = "URLWikipedia" type = "string"/>
+      
+   </class>
+</hibernate-mapping>
